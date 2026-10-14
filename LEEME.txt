@@ -1,0 +1,270 @@
+===============================================================================
+CUADERNO INTERACTIVO DE LABORATORIO
+Universidad Tecnológica de Pereira · Facultad de Ciencias Básicas
+Departamento de Física · Laboratorio de Física I
+Práctica 5 · Ley de Hooke
+===============================================================================
+
+CÓMO SE ABRE
+-------------------------------------------------------------------------------
+Haz doble clic en «index.html». Se abre en cualquier navegador moderno
+(Chrome, Edge, Firefox, Safari), sin instalar nada y sin servidor.
+
+Mantén la carpeta completa: el cuaderno necesita las subcarpetas css, js e
+imagenesUTP que están a su lado. Si mueves solo el index.html, se verá sin
+estilos, sin portada y sin las fotografías del montaje.
+
+Con conexión a internet las tipografías se cargan desde Google Fonts. Sin
+conexión el cuaderno funciona igual: el navegador sustituye las tipografías por
+las del sistema y nada más cambia.
+
+
+ESTRUCTURA DE LA CARPETA
+-------------------------------------------------------------------------------
+index.html .................. estructura, barra superior y navegación
+css/estilos.css ............. toda la apariencia, incluida la hoja de impresión
+js/datos.js ................. contenido académico: textos, glosario, datos de
+                              referencia y constantes de la práctica
+js/paginas.js ............... construcción de las 21 páginas y registro de los
+                              campos con sus respuestas
+js/instrumentos.js .......... montaje interactivo, simulador del resorte y todo
+                              el cálculo: elongaciones, promedios, ajuste,
+                              constantes elásticas y comparación
+js/app.js ................... navegación, guardado, autocompletado, verificación
+imagenesUTP/ ................ portada, rosa de los vientos y las cuatro
+                              fotografías del montaje
+LEEME.txt ................... este archivo
+
+
+LAS 21 SECCIONES
+-------------------------------------------------------------------------------
+00  Portada                            11  Resorte 1 · Tablas 1 a 5
+01  Índice                             12  Resorte 2 · Tablas 6 a 10
+02  Presentación de la práctica        13  Tablas 11 y 12 · Fuerza y x̄
+03  Objetivos                          14  Gráficas F frente a x̄ · Tabla 13
+04  Materiales e instrumentos          15  Constantes elásticas
+05  Fundamento físico                  16  Simulador de la ley de Hooke
+06  Montaje experimental               17  Preguntas
+07  Procedimiento                      18  Conclusiones
+08  Encabezado del informe             19  Glosario
+09  Marco teórico                      20  Referencias
+10  Preinforme · Predicciones
+
+
+LOS BOTONES DE LA BARRA SUPERIOR
+-------------------------------------------------------------------------------
+Índice ............. abre el cajón lateral con las 21 secciones.
+Autocompletar todo . rellena de una vez TODOS los campos de TODAS las tablas y
+                     de todas las páginas del cuaderno con el conjunto de datos
+                     de referencia. Pide confirmación antes de sobrescribir.
+Verificar .......... contrasta con la referencia lo que haya escrito y marca en
+                     verde o en rojo, con una nota explicativa bajo cada campo.
+Imprimir ........... genera el PDF de entrega con las 21 páginas seguidas.
+Reiniciar .......... borra todo lo escrito en este navegador.
+
+Cada página de trabajo repite esas acciones en pequeño, limitadas a esa página:
+«Autocompletar esta página», «Verificar» y «Limpiar».
+
+También se puede navegar con las flechas ← y → del teclado.
+
+
+QUÉ SE VERIFICA Y QUÉ NO
+-------------------------------------------------------------------------------
+El estudiante mide sus propios resortes con sus propias masas, de modo que las
+casillas de las Tablas 1 a 10 no tienen una respuesta correcta: son datos suyos.
+El cuaderno distingue por eso tres clases de campo.
+
+1. DATOS DEL ESTUDIANTE (masas, posiciones inicial y final)
+   No se verifican. El botón «Autocompletar» sí los rellena, con el conjunto de
+   datos de referencia que se describe más abajo, para que el docente pueda
+   proyectar un ejemplo completo o para que el estudiante compruebe cómo debería
+   comportarse el cuaderno.
+
+2. RESPUESTAS CON VALOR CORRECTO (las cinco del preinforme)
+   Son los únicos campos que «Verificar» califica. Admiten coma o punto decimal
+   y tienen tolerancia:
+     1. Fuerza de un conjunto de 0,200 kg ......... 1,96 N    (± 0,02)
+     2. Alargamiento con k = 25,0 N/m ............. 7,8 cm    (± 0,15)
+     3. Constante de un resorte: 2,0 N → 8,0 cm ... 25,0 N/m  (± 0,6)
+     4. Elongación de 72,0 cm a 64,4 cm, en metros  0,076 m   (± 0,002)
+     5. Energía almacenada, ½·k·x² ................ 0,080 J   (± 0,004)
+   Tres de las cinco obligan a cambiar de unidades, que es donde esta práctica
+   se pierde más a menudo. Al verificar, cada campo muestra debajo la nota con
+   el procedimiento, acierte o no.
+
+3. CAMPOS PERSONALES (docente, grupo, estudiantes, códigos y la casilla NOTA)
+   Nunca se autocompletan ni se verifican. La casilla NOTA reproduce la del
+   formato impreso del informe y queda reservada al docente.
+
+Los textos largos —resumen, marco teórico, las cuatro preguntas y las tres
+conclusiones— no se califican: el autocompletado carga un texto modelo que
+muestra la profundidad y la estructura esperadas, no para copiarlo.
+
+
+EL CONJUNTO DE DATOS DE REFERENCIA
+-------------------------------------------------------------------------------
+El botón «Autocompletar» no sortea números al azar: carga siempre el mismo
+conjunto de datos, de modo que el docente que lo proyecta en clase y el
+estudiante que lo abre en su casa obtienen exactamente los mismos resultados.
+
+Se construye con dos resortes de constante conocida —25,8 N/m y 14,6 N/m— y
+cinco masas entre 0,050 kg y 0,250 kg. Para cada carga se calcula el
+alargamiento teórico x = F/k y se sitúa el extremo del resorte sobre la regla
+partiendo de una longitud inicial fija. A las lecturas de posición se les aplica
+una desviación de una o dos décimas de centímetro, que es justo la resolución de
+la regla del montaje. Las desviaciones están escritas una a una en js/datos.js
+(constantes DESV_XI y DESV_XF).
+
+Con esos datos el cuaderno obtiene:
+
+    Resorte 1 ... F = 25,97 · x + 0,0035     R² = 0,99995    k = 25,97 N/m
+    Resorte 2 ... F = 14,67 · x + 0,0020     R² = 0,99994    k = 14,67 N/m
+    cociente de rigideces ....................................... 1,77 veces
+
+Las constantes recuperadas quedan a menos del 1 % de las verdaderas y los dos
+términos independientes son del orden de milésimas de newton, es decir,
+indistinguibles de cero: justo lo que debe salir, y justo lo que pregunta el
+punto 2 del informe.
+
+
+CÓMO CALCULA EL CUADERNO
+-------------------------------------------------------------------------------
+Elongación de cada medición
+    x = |x_f − x_i|, la distancia entre los dos cursores. Se toma el valor
+    absoluto (ver más abajo la nota sobre el sentido de la regla).
+
+Promedio de cada tabla
+    x̄ = (x₁ + x₂ + x₃)/3. Cada tabla muestra la suma y la división paso a paso,
+    y da el resultado en centímetros y en metros.
+
+Fuerza
+    F = m·g con g = 9,80 m/s² y la masa del conjunto completo medida en la
+    balanza.
+
+Ajuste de los datos
+    Mínimos cuadrados, programado en el propio cuaderno, sin bibliotecas
+    externas. Hay dos modelos, elegibles en la página 14:
+      · F = m·x + b    recta general; es la que entrega la línea de tendencia de
+                       una hoja de cálculo y la que pide la guía
+      · F = k·x        recta por el origen, que impone que un resorte sin carga
+                       no se alargue
+    En ambos casos se calcula el coeficiente de determinación R².
+
+Constante elástica
+    Es la pendiente de la recta, en newtons por metro. El cuaderno convierte los
+    centímetros a metros antes de ajustar, de modo que la pendiente sale ya en
+    las unidades correctas.
+
+Columna F/x̄ de las Tablas 11 y 12
+    No la pide el informe. Es la constante calculada punto a punto, y sirve para
+    detectar de un vistazo una medida descuadrada antes de graficar.
+
+Todo se recalcula solo: basta corregir una posición en cualquier tabla para que
+la elongación, el promedio, las Tablas 11 y 12, las gráficas, las ecuaciones y
+las constantes se actualicen.
+
+
+GUARDADO
+-------------------------------------------------------------------------------
+El cuaderno guarda lo escrito en el almacenamiento local del navegador, cada vez
+que se escribe. Eso significa que:
+
+  · se recupera al volver a abrir el archivo en el mismo navegador y equipo;
+  · NO viaja con el archivo: si se copia la carpeta a otro computador, el
+    cuaderno llega en blanco;
+  · el modo incógnito y el borrado de datos de navegación lo eliminan.
+
+Para entregar, usa «Imprimir» y guarda como PDF. Al imprimir, el cuaderno
+despliega el glosario completo y expande las respuestas largas, de modo que en
+el PDF aparece todo el texto escrito y no solo la parte visible en pantalla.
+
+
+ACCESIBILIDAD
+-------------------------------------------------------------------------------
+  · Navegación completa por teclado, incluidos los puntos sensibles del montaje
+    (Tab para llegar, Enter o espacio para activar).
+  · Cada campo tiene su etiqueta para lectores de pantalla.
+  · Los avisos se anuncian mediante regiones «live».
+  · Si el sistema tiene activada la reducción de movimiento, el resorte del
+    simulador no oscila: pasa directamente a su posición de equilibrio.
+
+
+SOBRE EL DOCUMENTO DE PARTIDA
+-------------------------------------------------------------------------------
+El cuaderno se construyó sobre el informe «Verificación experimental. Ley de
+Hooke» del Departamento de Física. Conviene dejar constancia de lo que se
+encontró en él, porque algunas cosas se corrigieron al trasladarlas.
+
+1. EL SENTIDO DE LA REGLA. Es lo más importante. El informe define la elongación
+   como x = x_f − x_i, pero en las fotografías del propio documento se ve que la
+   regla del montaje está graduada de forma DECRECIENTE hacia abajo: en la
+   Figura 2 la escala va de 85 arriba a 50 abajo. Al estirarse el resorte, la
+   lectura del cursor inferior resulta por tanto MENOR que la del superior, y la
+   resta tal como está escrita da un valor negativo. El cuaderno calcula
+   x = |x_f − x_i|, es decir, la distancia entre los dos cursores, lo que da el
+   resultado correcto con la regla graduada en cualquiera de los dos sentidos.
+   Queda explicado en la propia página de las tablas y en el glosario.
+
+2. NUMERACIÓN DE LAS TABLAS. El documento rotula como «Tabla 3» tanto la quinta
+   tabla del primer resorte (que debería ser la Tabla 5) como la quinta del
+   segundo (que debería ser la Tabla 10). En el cuaderno van numeradas
+   correctamente, de la 1 a la 10.
+
+3. NUMERACIÓN DEL PROCEDIMIENTO. La lista salta del punto 2 al 4: no hay punto
+   3, pero el punto 8 remite a «los numerales 2, 3, 4, 5, 6 y 7». El cuaderno
+   reorganiza el procedimiento en diez pasos consecutivos sin huecos.
+
+4. PIE DE FIGURA REPETIDO. La cuarta fotografía lleva el mismo pie que la
+   segunda, «Medición de la posición inicial del resorte», cuando corresponde a
+   la medición de la posición FINAL. En el cuaderno cada una lleva su pie
+   correcto.
+
+5. ENCABEZADOS INCONSISTENTES. Las Tablas 1 y 2 titulan las columnas «Posición
+   inicial / Posición final» y las Tablas 3 y 4, «Longitud inicial / Longitud
+   final», para la misma magnitud. Se unificó en «posición», que es lo que
+   realmente se lee en la regla; la longitud del resorte sería otra cosa.
+
+6. CAMBIO DE UNIDADES SIN AVISO. Las Tablas 1 a 10 piden las posiciones en
+   centímetros y las Tablas 11 y 12, el alargamiento promedio en metros. El
+   informe no lo señala, y es el error más frecuente de esta práctica: una
+   pendiente cien veces menor que la constante verdadera. El cuaderno da el
+   promedio en las dos unidades, hace la conversión antes de ajustar y dedica
+   tres de las cinco preguntas del preinforme a ese paso.
+
+7. LAS FOTOGRAFÍAS. Las cuatro imágenes del montaje son las del propio
+   documento, extraídas sin retocar y solo reescaladas. Se emplean como
+   Figuras 1 a 4 en la página del montaje.
+
+8. LA PORTADA. Se reescribió sobre la portada de otra práctica, reconstruyendo
+   el papel y la retícula que había bajo el texto anterior, de modo que se
+   conservan el logotipo, la filigrana de la rosa de los vientos y el resto del
+   diseño. La ilustración sigue siendo la de un espectrómetro de masas, que
+   pertenece a electromagnetismo y no a elasticidad: si en algún momento se
+   dispone de una ilustración adecuada, basta sustituir el archivo
+   imagenesUTP/portada.png por otro del mismo tamaño.
+
+
+COMPROBACIONES REALIZADAS
+-------------------------------------------------------------------------------
+Antes de la entrega se ejecutó un banco de 120 comprobaciones automáticas sobre
+el cuaderno cargado en un navegador simulado. Se verificaron, entre otras cosas:
+
+  · que las 21 páginas se construyen, con encabezado, pie e índice completos;
+  · que los 104 campos tienen identificador único y están registrados;
+  · que «Autocompletar todo» completa las diez tablas y, en una segunda pasada,
+    las casillas derivadas que dependen de ellas;
+  · que los campos personales y la casilla NOTA quedan siempre en blanco;
+  · que las cinco claves del preinforme coinciden con el cálculo físico;
+  · que la posición final resulta menor que la inicial, como en la regla real, y
+    que aun así la elongación sale positiva;
+  · que el conjunto de referencia devuelve k = 25,97 y 14,67 N/m, a menos del
+    1 % de las constantes verdaderas, con R² por encima de 0,9999 y términos
+    independientes despreciables;
+  · que el cambio al ajuste por el origen anula el término independiente y
+    conserva la constante;
+  · que un error de unidades en el preinforme se marca en rojo y la nota lo
+    explica;
+  · que el montaje, el simulador, el glosario, la navegación, el guardado, la
+    verificación y la impresión funcionan.
+
+===============================================================================
